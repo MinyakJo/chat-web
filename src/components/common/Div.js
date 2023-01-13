@@ -10,6 +10,8 @@ import CommonStyle from "components/style"
 
 const Div = styled.div`
 
+    box-sizing: border-box;
+
     ${props => {
         return props.flex ? CommonStyle.setFlex(props.flex) : null
     }};
@@ -48,7 +50,7 @@ const Div = styled.div`
     }};
 
     background-color: ${props => {
-        return props.backgroundColor ? CommonStyle.setColor(props.backgroundColor) : "#00000000"
+        return props.backgroundColor ? CommonStyle.setColor(props.backgroundColor) : CommonStyle.setColor("white")
     }};
     border: ${props => {
         return props.borderColor ? `1px solid ${CommonStyle.setColor(props.borderColor)}` : null
@@ -56,8 +58,6 @@ const Div = styled.div`
     border-radius: ${props => {
         return props.radius ? props.radius : null 
     }};
-
-    box-sizing: border-box;
 
     ${props => {
         if (props.src) {

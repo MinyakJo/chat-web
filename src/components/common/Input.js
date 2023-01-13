@@ -14,6 +14,8 @@ const Input = styled.input`
     height: 100%;
     margin: 0;
     padding: 0;
+    border: none;
+    outline: none;
     
     color: ${props => {
         return CommonStyle.setColor(props.color)
@@ -31,15 +33,12 @@ const Input = styled.input`
     background-color: ${props => {
         return props.backgroundColor ? CommonStyle.setColor(props.backgroundColor) : "#00000000"
     }};
-    border: none;
     border: ${props => {
         return props.borderColor ? `1px solid ${CommonStyle.setColor(props.borderColor)}` : null
     }};
     border-radius: ${props => {
         return props.radius ? props.radius : null 
     }};
-
-    outline: none;
 `
 
 export default Input

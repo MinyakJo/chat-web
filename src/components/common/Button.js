@@ -10,41 +10,40 @@ import CommonStyle from "components/style"
 
 const Button = styled.button`
 
-    ${props => {
-        return props.flex ? CommonStyle.setFlex(props.flex) : null
-    }};
-
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
+    border: none;
+    cursor: pointer;
+    outline: none;
+
+    ${props => {
+        return props.flex ? CommonStyle.setFlex(props.flex) : null
+    }};
     
     color: ${props => {
-        return CommonStyle.setColor(props.color)
+        return props.color ? CommonStyle.setColor(props.color) : CommonStyle.setColor("black")
     }};
     font-family: ${props => {
         return props.family ? props.family : "regular"
     }};
     font-size: ${props => {
-        return CommonStyle.setFontSize(props.size)
+        return props.size ? CommonStyle.setFontSize(props.size) : CommonStyle.setFontSize("medium")
     }};
     font-weight: ${props => {
         return props.weight ? props.weight : "400"
     }};
 
     background-color: ${props => {
-        return props.backgroundColor ? CommonStyle.setColor(props.backgroundColor) : "#00000000"
+        return props.backgroundColor ? CommonStyle.setColor(props.backgroundColor) : CommonStyle.setColor("white")
     }};
-    border: none;
     border: ${props => {
         return props.borderColor ? `1px solid ${CommonStyle.setColor(props.borderColor)}` : null
     }};
     border-radius: ${props => {
         return props.radius ? props.radius : null 
     }};
-
-    cursor: pointer;
-    outline: none;
 `
 
 export default Button
