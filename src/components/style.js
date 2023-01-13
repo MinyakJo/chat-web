@@ -65,6 +65,7 @@ const setFlex = (value) => {
             justify-content: space-between;
             align-items: center;
         `,
+        
         "column": css`
             display: flex;
             flex-direction: column;
