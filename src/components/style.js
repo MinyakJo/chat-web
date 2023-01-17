@@ -28,16 +28,16 @@ const setColor = (value) => {
     const color = {
         "white": "#FFFFFF",
         "black": "#000000",
-        "grey1": "#E5E5E5",
-        "grey2": "#BABABA",
+        "grey": "#E5E5E5",
         "major": "#2FC4CB",
+        "none": "#00000000"
     }
 
     if (value === "white") return color.white
     else if (value === "black") return color.black
-    else if (value === "grey1") return color.grey1
-    else if (value === "grey2") return color.grey2
+    else if (value === "grey") return color.grey
     else if (value === "major") return color.major
+    else if (value === "none") return color.none
 }
 
 const setFlex = (value) => {

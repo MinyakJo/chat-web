@@ -17,7 +17,7 @@ const Div = styled.div`
     }};
 
     width: ${props => {
-        return props.width ? props.width : "fit-content"
+        return props.width ? props.width : "100%"
     }};
     height: ${props => {
         return props.height ? props.height : "fit-content"

@@ -8,7 +8,7 @@ import React from "react"
 
 // ===== Module =====
 
-import GlobalFonts from "font/fonts"
+import GlobalFonts from "font/font"
 
 // ===== Code =====
 

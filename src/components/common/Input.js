@@ -31,7 +31,7 @@ const Input = styled.input`
     }};
 
     background-color: ${props => {
-        return props.backgroundColor ? CommonStyle.setColor(props.backgroundColor) : "#00000000"
+        return props.backgroundColor ? CommonStyle.setColor(props.backgroundColor) : CommonStyle.setColor("none")
     }};
     border: ${props => {
         return props.borderColor ? `1px solid ${CommonStyle.setColor(props.borderColor)}` : null
