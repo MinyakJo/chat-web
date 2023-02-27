@@ -4,7 +4,7 @@ import React from "react"
 
 // ===== Components =====
 
-
+import LoginBox from "components/component/LoginBox"
 
 // ===== Module =====
 
@@ -17,7 +17,7 @@ const App = () => {
     return(
         <React.Fragment>
             <GlobalFonts />
-            <h1>hello</h1>
+            <LoginBox />
         </React.Fragment>
     )
 }
