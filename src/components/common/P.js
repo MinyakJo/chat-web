@@ -28,6 +28,10 @@ const P = styled.p`
     font-weight: ${props => {
         return props.weight ? props.weight : "400"
     }};
+    line-height: ${props => {
+        return props.lineHeight ? props.lineHeight : null
+    }};
+    user-select: none;
 `
 
 export default P

@@ -1,44 +1,52 @@
 // ======= Library =======
 
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 
 // ======= Module =======
 
-import CommonStyle from "components/commonStyle"
+import CommonStyle from "components/style"
 
 // ======= Style =======
 
 const Input = styled.input`
 
     width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0;
     border: none;
     outline: none;
     
+    height: ${props => {
+        return props.height ? props.height : "fit-content"
+    }};
     color: ${props => {
-        return CommonStyle.setColor(props.color)
+        return props.color ? CommonStyle.setColor( props.color ) : "black"
     }};
     font-family: ${props => {
         return props.family ? props.family : "regular"
     }};
     font-size: ${props => {
-        return CommonStyle.setFontSize(props.size)
+        return CommonStyle.setFontSize( props.size )
     }};
     font-weight: ${props => {
         return props.weight ? props.weight : "400"
     }};
 
     background-color: ${props => {
-        return props.backgroundColor ? CommonStyle.setColor(props.backgroundColor) : CommonStyle.setColor("none")
+        return props.backgroundColor ? CommonStyle.setColor( props.backgroundColor ) : CommonStyle.setColor("none")
     }};
     border: ${props => {
-        return props.borderColor ? `1px solid ${CommonStyle.setColor(props.borderColor)}` : null
+        return props.borderColor ? `1px solid ${ CommonStyle.setColor( props.borderColor ) }` : null
     }};
     border-radius: ${props => {
         return props.radius ? props.radius : null 
     }};
+
+    &::placeholder{
+        color: ${props => {
+            return props.placeholderColor ? props.placeholderColor : null
+        }};    
+    }
 `
 
 export default Input

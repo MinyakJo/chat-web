@@ -36,21 +36,24 @@ const Div = styled.div`
         return props.marginRight ? props.marginRight : "0px"
     }};
 
+    padding: ${props => {
+        return props.padding ? props.padding : null
+    }};
     padding-top: ${props => {
-        return props.paddingTop ? props.paddingTop : "0px"
+        return props.paddingTop ? props.paddingTop : null
     }};
     padding-bottom: ${props => {
-        return props.paddingBottom ? props.paddingBottom : "0px"
+        return props.paddingBottom ? props.paddingBottom : null
     }};
     padding-left: ${props => {
-        return props.paddingLeft ? props.paddingLeft : "0px"
+        return props.paddingLeft ? props.paddingLeft : null
     }};
     padding-right: ${props => {
-        return props.paddingRight ? props.paddingRight : "0px"
+        return props.paddingRight ? props.paddingRight : null
     }};
 
     background-color: ${props => {
-        return props.backgroundColor ? CommonStyle.setColor(props.backgroundColor) : CommonStyle.setColor("white")
+        return props.backgroundColor ? CommonStyle.setColor(props.backgroundColor) : CommonStyle.setColor("none")
     }};
     border: ${props => {
         return props.borderColor ? `1px solid ${CommonStyle.setColor(props.borderColor)}` : null

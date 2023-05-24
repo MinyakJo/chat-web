@@ -36,7 +36,7 @@ const Button = styled.button`
     }};
 
     background-color: ${props => {
-        return props.backgroundColor ? CommonStyle.setColor(props.backgroundColor) : CommonStyle.setColor("white")
+        return props.backgroundColor ? CommonStyle.setColor(props.backgroundColor) : CommonStyle.setColor("none")
     }};
     border: ${props => {
         return props.borderColor ? `1px solid ${CommonStyle.setColor(props.borderColor)}` : null
@@ -44,6 +44,7 @@ const Button = styled.button`
     border-radius: ${props => {
         return props.radius ? props.radius : null 
     }};
+    user-select: none;
 `
 
 export default Button

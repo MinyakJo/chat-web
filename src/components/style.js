@@ -9,7 +9,7 @@ const setFontSize = (value) => {
     const font_size = {
         "extra_small": "11px",
         "small": "14px",
-        "medium": "16px",
+        "medium": "18px",
         "medium_large": "22px",
         "large": "28px",
         "extra_large": "40px"
@@ -29,15 +29,19 @@ const setColor = (value) => {
         "white": "#FFFFFF",
         "black": "#000000",
         "grey": "#E5E5E5",
-        "major": "#2FC4CB",
-        "none": "#00000000"
+        "none": "#00000000",
+        "purple": "#8E78FF",
+        "light_purple": "#E2DCFE",
+        "chat_bar": "#C7BFEE"
     }
 
     if (value === "white") return color.white
     else if (value === "black") return color.black
     else if (value === "grey") return color.grey
-    else if (value === "major") return color.major
     else if (value === "none") return color.none
+    else if (value === "purple") return color.purple
+    else if (value === "light_purple") return color.light_purple
+    else if (value === "chat_bar") return color.chat_bar
 }
 
 const setFlex = (value) => {

@@ -2,6 +2,7 @@
 
 import ReactDom from "react-dom/client"
 import { RecoilRoot } from "recoil"
+import { BrowserRouter } from "react-router-dom"
 
 // ===== Components =====
 
@@ -11,7 +12,9 @@ import App from "./App"
 
 const root = document.getElementById("root")
 ReactDom.createRoot(root).render(
-    <RecoilRoot>
-        <App/>
-    </RecoilRoot>
+    <BrowserRouter>
+        <RecoilRoot>
+            <App/>
+        </RecoilRoot>
+    </BrowserRouter>
 )
