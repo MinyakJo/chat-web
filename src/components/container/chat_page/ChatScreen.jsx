@@ -5,7 +5,7 @@ import CommonStyle from "components/style"
 import { useRecoilValue } from "recoil"
 import { chatMessagesState } from "recoil/ChatRecoil"
 import ChatProfile from "components/component/chat_page/ChatProfile"
-import ChatTextBox from "components/component/chat_page/ChatTextBox"
+import ChatTextBox from "components/container/chat_page/ChatTextBox"
 import useScrollToBottom from "hooks/useScrollToBottom"
 
 const ScreenContainer = styled(Div)`

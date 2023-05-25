@@ -7,8 +7,6 @@ import Spinner from "components/common/Spinner"
 const TextContainer = styled(Div)`
     display: flex;
     flex-direction: ${({ role }) => {
-        console.log(role)
-        console.log(role === "user")
         return role === "user" ? "row-reverse" : "row"
     }};
 `

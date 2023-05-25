@@ -4,13 +4,13 @@ import Input from "components/common/Input"
 import Icon from "components/common/Icon"
 import styled from "styled-components"
 import Img from "components/common/Img"
-import right_icon from "../../../svg/angle_small_right.svg"
+import right_icon from "../../../svg/angle_small_right_icon.svg"
 
 const InputContainer = styled(Div)`
     flex-basis: calc( 100% - 48px );
 `
 
-const ChatInput = ({ onChange, height, padding, backgroundColor, onKeyUp, value }) => {
+const ChatInput = ({ onChange, height, padding, backgroundColor, onKeyUp, value, disabled }) => {
     return (
         <Div 
             flex="row"
@@ -25,6 +25,7 @@ const ChatInput = ({ onChange, height, padding, backgroundColor, onKeyUp, value 
                     onChange={ onChange ? onChange : null }
                     onKeyUp={ onKeyUp ? onKeyUp : null }
                     value={ value }
+                    disabled={ disabled }
                 />
             </InputContainer>
             <Icon flex="row_center" basis="40px" marginLeft="8px">

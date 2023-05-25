@@ -1,6 +1,6 @@
 import chatErrorCode from "./chatErrorCode"
 
-const hasData = ({ data, status }, [ state, setState ] ) => {
+const hasData = ({ data, status }, [ state, setState ], setLoading ) => {
     
     const statusCode = chatErrorCode( status )
 
@@ -8,7 +8,7 @@ const hasData = ({ data, status }, [ state, setState ] ) => {
         console.log("success")
 
         const list = [ ...state ]
-        console.log(list)
+        
         list.pop()
         list.push( { role: "assistant", message: data.content, loading: false } )
         setState( list )
@@ -18,9 +18,11 @@ const hasData = ({ data, status }, [ state, setState ] ) => {
         const list = [ ...state ]
 
         list.pop()
-        list.push( { role: "assistant", message: status, loading: false } )
+        list.push( { role: "assistant", message: statusCode, loading: false, err: true } )
         setState( list )
     }
+
+    setLoading( false )
 }
 
 export default hasData
