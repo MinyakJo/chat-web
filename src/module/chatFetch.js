@@ -23,7 +23,7 @@ const chatFetch = async ( message ) => {
 
     return {
         data: res.data.choices[ 0 ].message,
-        status: res.status === 200 ? true : false
+        status: res.status
     }
 }
 

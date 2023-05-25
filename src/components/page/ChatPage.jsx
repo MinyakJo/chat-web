@@ -7,6 +7,7 @@ import { chatInputState, chatMessagesState } from "recoil/ChatRecoil"
 import { debounce } from "lodash"
 import ChatScreen from "components/container/chat_page/ChatScreen"
 import chatFetch from "module/chatFetch"
+import hasData from "module/hasData"
 
 
 //chat용 container
@@ -40,8 +41,8 @@ const ChatPage = () => {
                 }
                 setMessages( state => [ ...state, { role: "user", message: input } ] )
 
-                const { data, status } = await chatFetch( input )
-                hasData({ data, status }, setMessages )
+                const fetchData = await chatFetch( input )
+                hasData( fetchData, [ messages, setMessages ] )
 
                 return
             default:
@@ -55,20 +56,24 @@ const ChatPage = () => {
 
     const onKeyUpEvent = debounce( async e => {
         if(e.keyCode === 13){
+            console.log("send")
             setInput("")
 
             if( input === "" ){
                 console.log("empty")
                 return
             }
-            setMessages( messages => [ ...messages, { role: "user", message: input } ] )
 
-            const { data, status } = await chatFetch( input )
-            hasData({ data, status }, setMessages )
+            const list = [ ...messages ]
+
+            list.push( { role: "user", message: input, loading: false } )
+            list.push( { role: "assistant", message: "", loading: true } )
+            setMessages( list )
+
+            const fetchData = await chatFetch( input )
+            hasData( fetchData, [ list, setMessages ] )
         }
     }, 100)
-
-    console.log(messages)
 
     return (
         <Div height="100%" flex="row_center" backgroundColor="grey">
@@ -88,14 +93,3 @@ const ChatPage = () => {
 }
 
 export default ChatPage
-
-const hasData = ({ data, status }, setState ) => {
-    if(status){
-        console.log("success")
-        setState( state => [ ...state, { role: data.role, message: data.content } ] )
-    }else{
-        console.log("failed")
-    }
-}
-
-export { hasData }

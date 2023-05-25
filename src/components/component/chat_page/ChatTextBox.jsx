@@ -2,6 +2,7 @@ import React from "react"
 import Div from "components/common/Div"
 import styled from "styled-components"
 import P from "components/common/P"
+import Spinner from "components/common/Spinner"
 
 const TextContainer = styled(Div)`
     display: flex;
@@ -17,13 +18,17 @@ const Text = styled(P)`
     white-space: pre-line;
 `
 
-const ChatTextBox = ({ children, role }) => {
+const ChatTextBox = ({ children, role, loading }) => {
     return (
         <TextContainer marginTop="8px" role={ role ? role : null }>
             <Div width="fit-content" backgroundColor="white" radius="10px" padding="12px">
-                <Text color="black" size="small4">
-                    { children }
-                </Text>
+                {
+                    loading ?
+                    <Spinner width="50px"/> :
+                    <Text color="black" size="small4">
+                        { children }
+                    </Text>
+                }
             </Div>
         </TextContainer>
     )

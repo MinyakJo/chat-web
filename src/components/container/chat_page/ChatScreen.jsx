@@ -1,4 +1,4 @@
-import React, { Suspense } from "react"
+import React, { useRef } from "react"
 import Div from "components/common/Div"
 import styled from "styled-components"
 import CommonStyle from "components/style"
@@ -6,6 +6,7 @@ import { useRecoilValue } from "recoil"
 import { chatMessagesState } from "recoil/ChatRecoil"
 import ChatProfile from "components/component/chat_page/ChatProfile"
 import ChatTextBox from "components/component/chat_page/ChatTextBox"
+import useScrollToBottom from "hooks/useScrollToBottom"
 
 const ScreenContainer = styled(Div)`
     overflow-x: hidden;
@@ -47,23 +48,28 @@ const ChatComponent = styled(Div)`
 
 const ChatScreen = () => {
 
+    //ref
+    const ref = useRef()
+
+    //recoil
     const messages = useRecoilValue( chatMessagesState )
 
+    //useEffect
+    useScrollToBottom({ useRef: ref, element: messages })
+
     return (
-        <ScreenContainer flex="row" height="calc( 100% - 60px )">
+        <ScreenContainer flex="row" height="calc( 100% - 60px )" ref={ ref }>
             <Screen>
                 {
                     messages && messages.map(( e, i ) =>
-                        <Suspense>
-                            <ChatContainer key={ `messages_${ i }` } role={ e?.role ? e.role : null }>
-                                <Chat>
-                                    <ChatProfile role={ e?.role ? e.role : null }/>
-                                    <ChatTextBox role={ e?.role ? e.role : null }>
-                                        { e.message }
-                                    </ChatTextBox>
-                                </Chat>
-                            </ChatContainer>
-                        </Suspense>
+                        <ChatContainer key={ `messages_${ i }` } role={ e?.role ? e.role : null }>
+                            <Chat>
+                                <ChatProfile role={ e?.role ? e.role : null }/>
+                                <ChatTextBox role={ e?.role ? e.role : null } loading={ e.loading }>
+                                    { e.message }
+                                </ChatTextBox>
+                            </Chat>
+                        </ChatContainer>
                     )
                 }
             </Screen>
@@ -71,7 +77,7 @@ const ChatScreen = () => {
     )
 }
 
-export default ChatScreen
+export default React.memo( ChatScreen )
 
 const Chat = ({ children }) => {
     return (
