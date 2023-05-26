@@ -1,20 +1,22 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Div from "components/common/Div"
 import styled from "styled-components"
 import ChatInput from "components/component/chat_page/ChatInput"
-import { useRecoilState } from "recoil"
-import { chatInputState, chatMessagesState } from "recoil/ChatRecoil"
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil"
+import { chatInputState, chatMessagesState } from "recoil/chatRecoil"
 import { debounce } from "lodash"
 import ChatScreen from "components/container/chat_page/ChatScreen"
 import chatFetch from "module/chatFetch"
 import hasData from "module/hasData"
+import { topCurrentSelectState } from "recoil/topRecoil"
 
 
 //chat용 container
 const ChatContainer = styled(Div)`
-    max-width: 500px;
-    aspect-ratio: 5 / 8;
-    overflow: hidden;
+    max-width: 1440px;
+    aspect-ratio: 1.684 / 1;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px -1px 10px 2px rgba(0, 0, 0, 0.25);
 `
 
 const ChatPage = () => {
@@ -24,9 +26,20 @@ const ChatPage = () => {
 
     //recoil
     const [ input, setInput ] = useRecoilState( chatInputState )
+
     const [ messages, setMessages ] = useRecoilState( chatMessagesState )
 
+    const setTopSelect = useSetRecoilState( topCurrentSelectState )
+    const resetTop = useResetRecoilState( topCurrentSelectState )
+
     //useEffect
+    useEffect(() => {
+        setTopSelect( "noori" )
+
+        return () => {
+            resetTop()
+        }
+    }, [ setTopSelect, resetTop ])
 
     //event
     const onClickEvent = e => {
@@ -77,17 +90,18 @@ const ChatPage = () => {
     }
 
     return (
-        <Div height="100%" flex="row_center" backgroundColor="grey">
-            <ChatContainer flex="column_between" backgroundColor="purple" radius="10px" onClick={ onClickEvent }>
+        <Div flex="row_center" padding="40px 0px">
+            <ChatContainer flex="column_between" radius="10px" onClick={ onClickEvent }>
                 <ChatScreen/>
                 <ChatInput 
                     onChange={ onChageEvent } 
                     onKeyUp={ onKeyUpEvent } 
-                    height="60px" 
-                    padding="10px 20px" 
+                    height="80px" 
+                    padding="8px 48px" 
                     backgroundColor="light_purple"
                     value={ input }
                     disabled={ loading }
+                    placeholder="누리에게 궁금한 것은 무엇인가요?"
                 />
             </ChatContainer>
         </Div>

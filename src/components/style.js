@@ -7,20 +7,50 @@ import { css } from 'styled-components'
 const setFontSize = (value) => {
 
     const font_size = {
-        "extra_small": "11px",
-        "small": "14px",
-        "medium": "18px",
-        "medium_large": "22px",
+        "xxx_small": "9px",
+        "xx_small": "10px",
+        "x_small": "11px",
+        "x_small2": "12px",
+        "x_small3": "13px",
+        "x_small4": "14px",
+        "small": "15px",
+        "small2": "16px",
+        "small3": "17px",
+        "small4": "18px",
+        "medium": "20px",
+        "medium2": "22px",
+        "medium3": "24px",
+        "medium4": "26px",
         "large": "28px",
-        "extra_large": "40px"
+        "large2": "30px",
+        "large3": "32px",
+        "large4": "34px",
+        "x_large": "36px",
+        "xx_large": "38px",
+        "xxx_laege": "40px"
     }
 
-    if (value === "extra_small") return font_size.extra_small
+    if(value === "xxx_small") return font_size.xxx_small
+    else if(value === "xx_small") return font_size.xx_small
+    else if (value === "x_small") return font_size.x_small
+    else if (value === "x_small2") return font_size.x_small2
+    else if (value === "x_small3") return font_size.x_small3
+    else if (value === "x_small4") return font_size.x_small4
     else if (value === "small") return font_size.small
+    else if (value === "small2") return font_size.small2
+    else if (value === "small3") return font_size.small3
+    else if (value === "small4") return font_size.small4
     else if (value === "medium") return font_size.medium
-    else if (value === "medium_large") return font_size.medium_large
+    else if (value === "medium2") return font_size.medium2
+    else if (value === "medium3") return font_size.medium3
+    else if (value === "medium4") return font_size.medium4
     else if (value === "large") return font_size.large
-    else if (value === "extra_large") return font_size.extra_large
+    else if (value === "large2") return font_size.large2
+    else if (value === "large3") return font_size.large3
+    else if (value === "large4") return font_size.large4
+    else if (value === "x_large") return font_size.x_large
+    else if (value === "xx_large") return font_size.xx_large
+    else if (value === "xxx_large") return font_size.xxx_large
 }
 
 const setColor = (value) => {
@@ -28,11 +58,18 @@ const setColor = (value) => {
     const color = {
         "white": "#FFFFFF",
         "black": "#000000",
-        "grey": "#E5E5E5",
         "none": "#00000000",
         "purple": "#8E78FF",
         "light_purple": "#E2DCFE",
-        "chat_bar": "#C7BFEE"
+        "chat_bar": "#C7BFEE",
+        "green": "#3B8600",
+        "light_green": "#70FF00",
+        "light_washed_green": "#9BD75F",
+        "grey": "#D1D1D1",
+        "grey2": "#BFBFBF",
+        "grey3": "#A6A6A6",
+        "light_grey": "#F2F2F2",
+        "light_yellow": "#FCFFD7B2"
     }
 
     if (value === "white") return color.white
@@ -42,6 +79,14 @@ const setColor = (value) => {
     else if (value === "purple") return color.purple
     else if (value === "light_purple") return color.light_purple
     else if (value === "chat_bar") return color.chat_bar
+    else if (value === "green") return color.green
+    else if (value === "light_green") return color.light_green
+    else if (value === "light_washed_green") return color.light_washed_green
+    else if (value === "grey") return color.grey
+    else if (value === "grey2") return color.grey2
+    else if (value === "grey3") return color.grey3
+    else if (value === "light_grey") return color.light_grey
+    else if (value === "light_yellow") return color.light_yellow
 }
 
 const setFlex = (value) => {

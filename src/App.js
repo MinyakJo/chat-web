@@ -12,17 +12,30 @@ import Div from "components/common/Div"
 
 import GlobalFonts from "font/font"
 import CommonStyle from "components/style"
+import TopBar from "components/container/top_bar/TopBar"
 
 // ===== Code =====
 
 //공통  main container
+const AppContainer = styled(Div)`
+    width: 100vw;
+    height: 100vh; 
+`
+
 const MainContainter = styled.main`
     ${ CommonStyle.setFlex("column_top") }
     position: relative;
+    width: 100%;
+    height: calc( 100% - 120px );
     overflow-x: hidden;
     overflow-y: auto;
-    width: 100%;
-    height: 100%;
+
+    max-width: ${({ maxWidth }) => {
+        return maxWidth ? maxWidth : null
+    }};
+    background-color: ${({ backgroundColor }) => {
+        return backgroundColor ? CommonStyle.setColor( backgroundColor ) : null
+    }};
 
     ::-webkit-scrollbar{
         width: ${({ scrollbarWidth }) => {
@@ -33,28 +46,30 @@ const MainContainter = styled.main`
         border-radius: ${({ scrollbarBorder }) => {
             return scrollbarBorder ? scrollbarBorder : "10px"
         }};
-        background-color: ${({ scrollbarBackgroundColor }) => {
-            return scrollbarBackgroundColor ? scrollbarBackgroundColor : null
+        background-color: ${({ scrollColor }) => {
+            return scrollColor ? CommonStyle.setColor( scrollColor ) : CommonStyle.setColor( "grey" )
         }};
     }
-
-    max-width: ${({ maxWidth }) => {
-        return maxWidth ? maxWidth : null
-    }};
-    background-color: ${({ backgroundColor }) => {
-        return backgroundColor ? CommonStyle.setColor( backgroundColor ) : null
-    }};
+    ::-webkit-scrollbar-track{
+        border-radius: ${({ scrollbarBorder }) => {
+            return scrollbarBorder ? scrollbarBorder : "10px"
+        }};
+        background-color: ${({ scrollbarBackgroundColor }) => {
+            return scrollbarBackgroundColor ? CommonStyle.setColor( scrollbarBackgroundColor ) : CommonStyle.setColor( "light_grey" )
+        }};
+    }
 `
 
 const App = () => {
 
     return(
-        <Div height="100vh">
+        <AppContainer>
             <GlobalFonts />
+            <TopBar/>
             <MainContainter>
                 <Router/>
             </MainContainter>
-        </Div>
+        </AppContainer>
     )
 }
 

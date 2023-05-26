@@ -3,7 +3,7 @@ import Div from "components/common/Div"
 import styled from "styled-components"
 import CommonStyle from "components/style"
 import { useRecoilValue } from "recoil"
-import { chatMessagesState } from "recoil/ChatRecoil"
+import { chatMessagesState } from "recoil/chatRecoil"
 import ChatProfile from "components/component/chat_page/ChatProfile"
 import ChatTextBox from "components/container/chat_page/ChatTextBox"
 import useScrollToBottom from "hooks/useScrollToBottom"
@@ -16,16 +16,19 @@ const ScreenContainer = styled(Div)`
         width: 10px;
     }
     ::-webkit-scrollbar-thumb{
-        background-color: ${ CommonStyle.setColor( "light_purple" ) };
-        border-radius: 10px;
+        background-color: ${ CommonStyle.setColor( "grey" ) };
+        border-radius: 20px;
+    }
+    ::-webkit-scrollbar-track{
+        background-color: ${ CommonStyle.setColor( "light_grey" ) };
+        border-radius: 20px;
     }
 `
 
 const Screen = styled.section`
     width: 100%;
     height: 100%;
-    padding: 40px;
-    padding-right: 30px;
+    padding-right: 65px;
     padding-bottom: 0px;
     box-sizing: border-box;
 `
@@ -42,8 +45,8 @@ const ChatContainer = styled.article`
 `
 
 const ChatComponent = styled(Div)`
-    max-width: 80%;
-    ${ CommonStyle.setFlex( "column_top" ) };
+    max-width: 60%;
+    ${ CommonStyle.setFlex( "row" ) };
 `
 
 const ChatScreen = () => {
@@ -58,22 +61,30 @@ const ChatScreen = () => {
     useScrollToBottom({ useRef: ref, element: messages })
 
     return (
-        <ScreenContainer flex="row" height="calc( 100% - 60px )" ref={ ref }>
-            <Screen>
-                {
-                    messages && messages.map(( e, i ) =>
-                        <ChatContainer key={ `messages_${ i }` } role={ e?.role ? e.role : null }>
-                            <Chat>
-                                <ChatProfile role={ e?.role ? e.role : null }/>
-                                <ChatTextBox role={ e?.role ? e.role : null } loading={ e.loading }>
-                                    { e.message }
-                                </ChatTextBox>
-                            </Chat>
-                        </ChatContainer>
-                    )
-                }
-            </Screen>
-        </ScreenContainer>
+        <Div radius="30px 30px 0px 0px" height="calc( 100% - 60px )" padding="40px 13px 23px 48px">
+            <ScreenContainer flex="row" height="100%" ref={ ref }>
+                <Screen>
+                    {
+                        messages && messages.map(( e, i ) =>
+                            <ChatContainer key={ `messages_${ i }` } role={ e.role }>
+                                <Chat>
+                                    {
+                                        e.role === "assistant" && 
+                                        <ChatProfile loading={ e.loading }/>
+                                    }
+                                    {
+                                        e.message &&
+                                        <ChatTextBox role={ e.role } loading={ e.loading }>
+                                            { e.message }
+                                        </ChatTextBox>
+                                    }
+                                </Chat>
+                            </ChatContainer>
+                        )
+                    }
+                </Screen>
+            </ScreenContainer>
+        </Div>
     )
 }
 
