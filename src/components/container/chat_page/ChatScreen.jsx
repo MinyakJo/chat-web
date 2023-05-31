@@ -64,6 +64,12 @@ const ChatScreen = () => {
         <Div radius="30px 30px 0px 0px" height="calc( 100% - 60px )" padding="40px 13px 23px 48px">
             <ScreenContainer flex="row" height="100%" ref={ ref }>
                 <Screen>
+                    <Chat>
+                        <ChatProfile/>
+                        <ChatTextBox role="assistant">
+                            안녕하세요. 환경 교육 강사 NOORI 입니다.
+                        </ChatTextBox>
+                    </Chat>
                     {
                         messages && messages.map(( e, i ) =>
                             <ChatContainer key={ `messages_${ i }` } role={ e.role }>

@@ -64,12 +64,12 @@ const setColor = (value) => {
         "chat_bar": "#C7BFEE",
         "green": "#3B8600",
         "light_green": "#70FF00",
-        "light_washed_green": "#9BD75F",
+        "light_washed_green": "#E1F3CF",
         "grey": "#D1D1D1",
         "grey2": "#BFBFBF",
         "grey3": "#A6A6A6",
         "light_grey": "#F2F2F2",
-        "light_yellow": "#FCFFD7B2"
+        "light_yellow": "#FDFFE3"
     }
 
     if (value === "white") return color.white

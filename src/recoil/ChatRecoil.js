@@ -1,5 +1,5 @@
 //import
-import { atom } from "recoil"
+import { atom, selector } from "recoil"
 
 //atom
 const chatInputState = atom({
@@ -12,5 +12,19 @@ const chatMessagesState = atom({
     default: []
 })
 
+//selector
+const chatMessageStreamSelector = selector({
+    key: "chatMessageStream",
+    get: ({ get }) => get( chatMessagesState ),
+    set: ({ set, get }, newVal) => {
+        const list = [ ...get( chatMessagesState ) ]
+
+        list.pop()
+        list.push({ role:"assistant", message: newVal, loading: false })
+
+        set( chatMessagesState, list )
+    }
+})
+
 //export
-export { chatInputState, chatMessagesState }
+export { chatInputState, chatMessagesState, chatMessageStreamSelector }

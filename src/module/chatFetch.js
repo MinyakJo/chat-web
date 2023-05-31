@@ -35,7 +35,7 @@ const chatFetch = async ( message ) => {
             "Content-Type": "application/json",
             'Authorization': `Bearer ${ process.env.REACT_APP_OPENAI_API_KEY }`
             },
-            data: JSON.stringify({
+            data: {
                 model: "gpt-3.5-turbo",
                 max_tokens: 2048,
                 temperature: 1,
@@ -43,11 +43,15 @@ const chatFetch = async ( message ) => {
                 frequency_penalty: 0,
                 presence_penalty: 0,
                 messages: [ 
+                    { role: "system", content: "네 이름은 NOORI" },
+                    { role: "system", content: "NOORI는 영어 대문자로만 대답" },
                     { role: "system", content: "환경 교육 강사라는 가정으로 5줄 이내로 답변" }, 
                     { role: "system", content: "사용자의 나이는 8 ~ 13세" }, 
                     ...messageList 
-                ]
-            })
+                ],
+                stream: true
+            },
+            responseType: "stream"
         })
     }catch( err ){
         console.log(err)
@@ -56,7 +60,6 @@ const chatFetch = async ( message ) => {
             status: err.response.status
         }
     }
-    console.log(res)
 
     return {
         data: res.data.choices[ 0 ].message,

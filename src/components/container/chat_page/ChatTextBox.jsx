@@ -23,42 +23,14 @@ const Text = styled(P)`
     letter-spacing: -0.01em;
 `
 
-const Polygon = styled(Div)`
-    position: absolute;
-
-    width: 50px;
-    height: 40px;
-    border-radius: 3px;
-
-    bottom: 12.6%;
-
-    clip-path: polygon( 0% 0%, 100% 50%, 0% 100%);
-
-    right: ${({ role }) => {
-        return role === "user" ? 0 : null
-    }};
-    left: ${({ role }) => {
-        return role !== "user" ? 0 : null
-    }};
-    transform: ${({ role })=> {
-        return role === "user" ? null : "rotate( 180deg )"
-    }};
-    background-color: ${({ role }) => {
-        return role === "user" ? CommonStyle.setColor( "light_yellow" ) : CommonStyle.setColor( "light_washed_green" )
-    }};
-`
-
 const ChatTextBox = ({ children, role }) => {
     return (
         <TextContainer marginTop="8px" role={ role ? role : null }>
-            <Polygon role={ role ? role : null }/>
             <TextBox 
                 width="fit-content" 
                 backgroundColor={ role === "user" ? "light_yellow" : "light_washed_green" } 
                 radius="40px" 
-                padding="20px 50px" 
-                marginLeft={ role === "user" ? null : "34px" }
-                marginRight={ role === "user" ? "34px" : null }    
+                padding="20px 50px"
             >
                 <Text color="black" size="medium" lineHeight="29px">
                     { children }
@@ -68,4 +40,4 @@ const ChatTextBox = ({ children, role }) => {
     )
 }
 
-export default ChatTextBox
+export default React.memo( ChatTextBox )
