@@ -13,7 +13,7 @@ import { topCurrentSelectState } from "recoil/topRecoil"
 //chat용 container
 const ChatContainer = styled(Div)`
     max-width: 1440px;
-    aspect-ratio: 1.684 / 1;
+    aspect-ratio: 2.01 / 1;
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0px -1px 10px 2px rgba(0, 0, 0, 0.25);
 `
@@ -136,7 +136,7 @@ const ChatPage = () => {
                             ...messageList,
                             { role: "system", content: "이름은 NOORI" },
                             { role: "system", content: "환경강사" }, 
-                            { role: "system", content: "대답은 5줄 이내" }, 
+                            { role: "system", content: "대답은 짧게" }, 
                             { role: "system", content: "사용자의 나이는 8 ~ 13세" },  
                         ],
                         stream: true
