@@ -54,7 +54,6 @@ const chatFetch = async ( message ) => {
             responseType: "stream"
         })
     }catch( err ){
-        console.log(err)
         return {
             data: err.response.data.error.message,
             status: err.response.status

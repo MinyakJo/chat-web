@@ -63,8 +63,8 @@ const TopBar = ({ backgroundColor }) => {
     //var
     const menuList = [
         { value: "NOORI", id: "noori" },
-        { value: "ECODE-IN", id: "ecode_in" },
-        { value: "STORE", id: "store" }
+        { value: "ECODE-IN", id: "ecode_in", link: "https://ecode-in.com/15" },
+        { value: "STORE", id: "store", link: "https://smartstore.naver.com/ecode-in" }
     ]
 
     //recoil
@@ -73,10 +73,15 @@ const TopBar = ({ backgroundColor }) => {
     //event
     const onClickEvent = e => {
         const basic = e.target.id
-        const type = basic.split("_")[ 0 ]
+        const type = basic.split( "_" )[ 0 ]
 
         switch(type){
             case "top":
+                const topIndex = Number( basic.split( "_" )[ 1 ] )
+                
+                if( !isNaN( topIndex ) ) {
+                    if( menuList[ topIndex ]?.link ) window.open( menuList[ topIndex ].link )
+                }
                 return
             default:
                 return
@@ -99,11 +104,11 @@ const TopBar = ({ backgroundColor }) => {
             {/* menu */}
             <Div flex="row_center" onClick={ onClickEvent }>
                 {
-                    menuList && menuList.map( e =>
-                        <MenuContainer key={ `${ e.id }` }>
+                    menuList && menuList.map( ( e, i ) =>
+                        <MenuContainer key={ `top_${ i }` }>
                             <ButtonContainer borderBottom={ e.id === topCurrentSelect ? "light_green" : null }>
                                 <Button 
-                                    id={ `top_${ e.id }` } 
+                                    id={ `top_${ i }` } 
                                     color={ e.id === topCurrentSelect ? "light_green" : "white" } 
                                     family={ e.id === topCurrentSelect ? null : "thin" } 
                                     size="medium" 

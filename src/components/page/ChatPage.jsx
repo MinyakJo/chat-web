@@ -68,11 +68,9 @@ const ChatPage = () => {
 
     //fuction
     const sendAfterFetch = async () => {
-        console.log("send")
         setInput("")
 
         if( input === "" ){
-            console.log("empty")
             setLoading( false )
             return
         }
@@ -153,7 +151,7 @@ const ChatPage = () => {
 
                 const chunk = decoder.decode( value )
                 const lines = chunk.split("\n")
-
+                
                 const jsonList = lines
                 .map( e => e.replace(/^data: /, "").trim()) //"data: "삭제, 공백삭제
                 .filter( e => e !== "" && e !== "[DONE]" )
@@ -165,7 +163,6 @@ const ChatPage = () => {
                 }
             }
         }catch( err ){
-            console.log(err)
             return {
                 data: err.response.data.error.message,
                 status: err.response.status
